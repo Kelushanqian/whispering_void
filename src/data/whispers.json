@@ -1,0 +1,64 @@
+{
+  "whispers": [
+    {
+      "text": "程序已启动，世界暂时安静。",
+      "theme": "beginning",
+      "weight": 1
+    },
+    {
+      "text": "风在调试。",
+      "theme": "nature",
+      "weight": 3
+    },
+    {
+      "text": "记忆栈溢出到梦里。",
+      "theme": "memory",
+      "weight": 3
+    },
+    {
+      "text": "逻辑暂停，为了等一个人。",
+      "theme": "waiting",
+      "weight": 3
+    },
+    {
+      "text": "return？还早。",
+      "theme": "time",
+      "weight": 3
+    },
+    {
+      "text": "指针指向虚无。",
+      "theme": "void",
+      "weight": 2
+    },
+    {
+      "text": "异常被捕获，温柔处理。",
+      "theme": "gentle",
+      "weight": 2
+    },
+    {
+      "text": "线程在睡眠，梦见并发。",
+      "theme": "dream",
+      "weight": 2
+    },
+    {
+      "text": "编译通过，但心事未了。",
+      "theme": "melancholy",
+      "weight": 2
+    },
+    {
+      "text": "递归到底，发现是你。",
+      "theme": "discovery",
+      "weight": 2
+    },
+    {
+      "text": "变量未定义，像某种期待。",
+      "theme": "undefined",
+      "weight": 2
+    },
+    {
+      "text": "函数返回了寂静。",
+      "theme": "silence",
+      "weight": 2
+    }
+  ]
+}
