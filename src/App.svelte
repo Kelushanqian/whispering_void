@@ -162,8 +162,7 @@
 
   .whisper {
     text-align: center;
-    padding: 2rem;
-    max-width: 80%;
+    max-width: 100vw;
     opacity: 0;
   }
 
@@ -193,5 +192,13 @@
     height: 8px;
     border-radius: 50%;
     background: rgba(255, 255, 255, 0.3);
+  }
+
+  /* 移动端：横向排列，每个字旋转90度 */
+  @media (max-width: 768px) {
+    .whisper {
+      transform: rotate(90deg);
+      white-space: nowrap;
+    }
   }
 </style>

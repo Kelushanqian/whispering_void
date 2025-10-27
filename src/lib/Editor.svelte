@@ -145,7 +145,7 @@
         {#if activeTab === "whispers"}
           <div class="whispers-editor">
             <div class="actions">
-              <button class="add-btn" on:click={addWhisper}>+ 添加新句</button>
+              <button class="add-btn" on:click={addWhisper}>添加新句</button>
               <button class="export-btn" on:click={exportData}>导出配置</button>
               <label class="import-btn">
                 导入配置
@@ -322,7 +322,6 @@
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: rgba(0, 0, 0, 0.8);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -333,9 +332,8 @@
   .editor-panel {
     background: #1e1e1e;
     border-radius: 12px;
-    width: 90%;
-    max-width: 800px;
-    max-height: 85vh;
+    width: 50%;
+    height: 75%;
     display: flex;
     flex-direction: column;
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
@@ -345,14 +343,14 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0.5rem 1rem;
+    padding: 0.3rem 0.6rem;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   }
 
   .editor-header h2 {
     margin: 0;
     color: rgba(255, 255, 255, 0.9);
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     font-weight: 300;
     letter-spacing: 0.05em;
   }
@@ -360,8 +358,7 @@
   .close-btn {
     background: none;
     border: none;
-    color: rgba(255, 255, 255, 0.6);
-    font-size: 1.5rem;
+    color: rgba(255, 255, 255, 0.8);
     cursor: pointer;
     padding: 0;
     width: 30px;
@@ -375,22 +372,22 @@
 
   .tabs {
     display: flex;
-    padding: 0 2rem;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 0.5rem 0;
+    gap: 0.5rem;
   }
 
   .tabs button {
     background: none;
     border: none;
     color: rgba(255, 255, 255, 0.5);
-    padding: 1rem 1.5rem;
     cursor: pointer;
-    font-size: 0.95rem;
     transition: all 0.2s;
+    padding: 0.3rem 1.5rem;
   }
 
   .tabs button.active {
-    color: rgba(255, 255, 255, 0.95);
+    color: rgba(255, 255, 255, 0.9);
   }
 
   .tabs button:hover {
@@ -400,21 +397,23 @@
   .editor-content {
     flex: 1;
     overflow-y: auto;
-    padding: 2rem;
+    padding: 1rem;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
   }
 
   .actions {
     display: flex;
-    gap: 1rem;
-    margin-bottom: 1.5rem;
+    gap: 1.2rem;
+    margin-bottom: 1rem;
   }
 
   .actions button,
   .actions label {
     background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     color: rgba(255, 255, 255, 0.9);
-    padding: 0.6rem 1.2rem;
+    padding: 0.5rem 1rem;
     border-radius: 6px;
     cursor: pointer;
     font-size: 0.9rem;
@@ -428,8 +427,8 @@
   }
 
   .whispers-list {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     gap: 1rem;
   }
 
@@ -437,30 +436,30 @@
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 8px;
-    padding: 1rem;
+    padding: 0.5rem;
   }
 
   .whisper-display {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 0.3rem;
   }
 
   .whisper-text {
     color: rgba(255, 255, 255, 0.9);
-    font-size: 1.1rem;
-    margin-bottom: 0.5rem;
+    font-size: 1rem;
   }
 
   .whisper-meta {
     display: flex;
-    gap: 1rem;
-    font-size: 0.85rem;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8rem;
   }
 
   .theme-tag {
     background: rgba(100, 100, 255, 0.3);
-    padding: 0.2rem 0.6rem;
+    padding: 0.1rem 0.3rem;
     border-radius: 4px;
     color: rgba(200, 200, 255, 0.9);
   }
@@ -471,46 +470,44 @@
 
   .whisper-actions {
     display: flex;
-    gap: 0.5rem;
-    margin-top: 0.5rem;
+    gap: 0.3rem;
   }
 
   .whisper-actions button {
     background: none;
-    border: 1px solid rgba(255, 255, 255, 0.2);
     color: rgba(255, 255, 255, 0.7);
-    padding: 0.4rem 0.8rem;
-    border-radius: 4px;
+    border-style: none;
+    padding: 0.2rem;
     cursor: pointer;
     font-size: 0.85rem;
     transition: all 0.2s;
   }
 
   .whisper-actions button:hover {
-    background: rgba(255, 255, 255, 0.1);
     color: rgba(255, 255, 255, 0.9);
   }
 
   .whisper-edit {
     display: flex;
     flex-direction: column;
-    gap: 0.8rem;
+    gap: 0.5rem;
   }
 
   .whisper-edit input {
     background: rgba(255, 255, 255, 0.1);
     border: 1px solid rgba(255, 255, 255, 0.2);
     color: rgba(255, 255, 255, 0.9);
-    padding: 0.6rem;
+    padding: 0.5rem 0.2rem;
     border-radius: 4px;
-    font-size: 0.95rem;
+    font-size: 0.9rem;
   }
 
   .whisper-edit button {
+    font-size: 0.8rem;
     background: rgba(100, 150, 255, 0.3);
     border: 1px solid rgba(100, 150, 255, 0.5);
     color: rgba(255, 255, 255, 0.9);
-    padding: 0.6rem;
+    padding: 0.3rem 0.2rem;
     border-radius: 4px;
     cursor: pointer;
     transition: all 0.2s;
@@ -522,9 +519,9 @@
 
   .themes-list {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
     gap: 1rem;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
   }
 
   .theme-item {
@@ -548,7 +545,7 @@
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 8px;
-    padding: 1.5rem;
+    padding: 0.5rem;
   }
 
   .theme-editor h3 {
@@ -559,11 +556,11 @@
 
   .theme-editor label,
   .animation-editor label {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: 10rem 15rem 10rem;
     color: rgba(255, 255, 255, 0.8);
     font-size: 0.9rem;
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
   }
 
   .theme-editor input,
@@ -571,9 +568,8 @@
     background: rgba(255, 255, 255, 0.1);
     border: 1px solid rgba(255, 255, 255, 0.2);
     color: rgba(255, 255, 255, 0.9);
-    padding: 0.6rem;
+    padding: 0.3rem;
     border-radius: 4px;
-    margin-top: 0.3rem;
     font-size: 0.95rem;
   }
 
@@ -582,11 +578,11 @@
     background: rgba(100, 150, 255, 0.3);
     border: 1px solid rgba(100, 150, 255, 0.5);
     color: rgba(255, 255, 255, 0.9);
-    padding: 0.8rem 1.5rem;
+    padding: 0.3rem 0.6rem;
     border-radius: 6px;
     cursor: pointer;
     font-size: 0.95rem;
-    margin-top: 1rem;
+    margin-top: 0.5rem;
     transition: all 0.2s;
   }
 
@@ -597,5 +593,27 @@
 
   .animation-editor {
     max-width: 500px;
+  }
+
+  @media (max-width: 768px) {
+    .editor-panel {
+      width: 90%;
+    }
+    .whispers-list {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .tabs {
+      gap: 0;
+    }
+
+    .actions {
+      gap: 1rem;
+    }
+
+    .theme-editor label,
+    .animation-editor label {
+      grid-template-columns: 1fr;
+    }
   }
 </style>

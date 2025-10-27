@@ -22,113 +22,77 @@ export interface ThemeConfig {
   animation: AnimationConfig;
 }
 
+// 基础样式配置 - 所有主题的默认值
+const baseStyle: ThemeStyle = {
+  backgroundColor: '#1a1a1a',
+  textColor: 'rgba(255, 255, 255, 0.85)',
+  fontSize: 'clamp(2rem, 3.5vw, 5rem)',
+  letterSpacing: '0.05em',
+  lineHeight: '1.6',
+  fontWeight: 400,
+};
+
+// 辅助函数：合并基础样式和自定义样式
+function createTheme(custom: Partial<ThemeStyle>): ThemeStyle {
+  return { ...baseStyle, ...custom };
+}
+
 export const defaultThemeConfig: ThemeConfig = {
   themes: {
-    beginning: {
+    beginning: createTheme({
       backgroundColor: '#1a1a2e',
-      textColor: 'rgba(255, 255, 255, 0.85)',
-      fontSize: 'clamp(1.5rem, 4vw, 2.5rem)',
-      letterSpacing: '0.05em',
-      lineHeight: '1.6',
-      fontWeight: 500
-    },
-    nature: {
+      textColor: 'rgba(255, 255, 255, 0.85)'
+    }),
+    nature: createTheme({
       backgroundColor: '#0f3460',
-      textColor: 'rgba(240, 255, 255, 0.9)',
-      fontSize: 'clamp(1.5rem, 4vw, 2.5rem)',
-      letterSpacing: '0.05em',
-      lineHeight: '1.6',
-      fontWeight: 500
-    },
-    memory: {
+      textColor: 'rgba(240, 255, 255, 0.9)'
+    }),
+    memory: createTheme({
       backgroundColor: '#16213e',
-      textColor: 'rgba(255, 245, 250, 0.85)',
-      fontSize: 'clamp(1.5rem, 4vw, 2.5rem)',
-      letterSpacing: '0.05em',
-      lineHeight: '1.6',
-      fontWeight: 500
-    },
-    waiting: {
+      textColor: 'rgba(255, 245, 250, 0.85)'
+    }),
+    waiting: createTheme({
       backgroundColor: '#1f1f3a',
-      textColor: 'rgba(255, 255, 255, 0.8)',
-      fontSize: 'clamp(1.5rem, 4vw, 2.5rem)',
-      letterSpacing: '0.05em',
-      lineHeight: '1.6',
-      fontWeight: 500
-    },
-    time: {
+      textColor: 'rgba(255, 255, 255, 0.8)'
+    }),
+    time: createTheme({
       backgroundColor: '#2d2d44',
-      textColor: 'rgba(255, 255, 255, 0.85)',
-      fontSize: 'clamp(1.5rem, 4vw, 2.5rem)',
-      letterSpacing: '0.05em',
-      lineHeight: '1.6',
-      fontWeight: 500
-    },
-    void: {
+      textColor: 'rgba(255, 255, 255, 0.85)'
+    }),
+    void: createTheme({
       backgroundColor: '#0a0a0a',
       textColor: 'rgba(255, 255, 255, 0.75)',
-      fontSize: 'clamp(1.5rem, 4vw, 2.5rem)',
       letterSpacing: '0.08em',
-      lineHeight: '1.6',
       fontWeight: 200
-    },
-    gentle: {
+    }),
+    gentle: createTheme({
       backgroundColor: '#2c3e50',
-      textColor: 'rgba(255, 250, 245, 0.9)',
-      fontSize: 'clamp(1.5rem, 4vw, 2.5rem)',
-      letterSpacing: '0.05em',
-      lineHeight: '1.6',
-      fontWeight: 500
-    },
-    dream: {
+      textColor: 'rgba(255, 250, 245, 0.9)'
+    }),
+    dream: createTheme({
       backgroundColor: '#1e2a3a',
-      textColor: 'rgba(230, 240, 255, 0.85)',
-      fontSize: 'clamp(1.5rem, 4vw, 2.5rem)',
-      letterSpacing: '0.05em',
-      lineHeight: '1.6',
-      fontWeight: 500
-    },
-    melancholy: {
+      textColor: 'rgba(230, 240, 255, 0.85)'
+    }),
+    melancholy: createTheme({
       backgroundColor: '#1a1f3a',
-      textColor: 'rgba(200, 210, 230, 0.85)',
-      fontSize: 'clamp(1.5rem, 4vw, 2.5rem)',
-      letterSpacing: '0.05em',
-      lineHeight: '1.6',
-      fontWeight: 500
-    },
-    discovery: {
+      textColor: 'rgba(200, 210, 230, 0.85)'
+    }),
+    discovery: createTheme({
       backgroundColor: '#2d1b3d',
-      textColor: 'rgba(255, 240, 255, 0.9)',
-      fontSize: 'clamp(1.5rem, 4vw, 2.5rem)',
-      letterSpacing: '0.05em',
-      lineHeight: '1.6',
-      fontWeight: 500
-    },
-    undefined: {
+      textColor: 'rgba(255, 240, 255, 0.9)'
+    }),
+    undefined: createTheme({
       backgroundColor: '#1c1c2e',
-      textColor: 'rgba(200, 200, 200, 0.8)',
-      fontSize: 'clamp(1.5rem, 4vw, 2.5rem)',
-      letterSpacing: '0.05em',
-      lineHeight: '1.6',
-      fontWeight: 500
-    },
-    silence: {
+      textColor: 'rgba(200, 200, 200, 0.8)'
+    }),
+    silence: createTheme({
       backgroundColor: '#151515',
       textColor: 'rgba(255, 255, 255, 0.7)',
-      fontSize: 'clamp(1.5rem, 4vw, 2.5rem)',
       letterSpacing: '0.1em',
-      lineHeight: '1.6',
       fontWeight: 200
-    }
+    })
   },
-  defaultTheme: {
-    backgroundColor: '#1a1a1a',
-    textColor: 'rgba(255, 255, 255, 0.85)',
-    fontSize: 'clamp(1.5rem, 4vw, 2.5rem)',
-    letterSpacing: '0.05em',
-    lineHeight: '1.6',
-    fontWeight: 500
-  },
+  defaultTheme: baseStyle,
   animation: {
     fadeInDuration: 800,
     fadeOutDuration: 500,
