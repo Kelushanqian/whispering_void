@@ -221,11 +221,11 @@
                 <label>
                   背景色:
                   <input
-                    type="color"
+                    type="text"
                     bind:value={editingThemeStyle.backgroundColor}
                   />
                   <input
-                    type="text"
+                    type="color"
                     bind:value={editingThemeStyle.backgroundColor}
                   />
                 </label>
@@ -332,7 +332,7 @@
   .editor-panel {
     background: #1e1e1e;
     border-radius: 12px;
-    width: 50%;
+    width: 80%;
     height: 75%;
     display: flex;
     flex-direction: column;
@@ -428,7 +428,7 @@
 
   .whispers-list {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
     gap: 1rem;
   }
 
@@ -561,6 +561,7 @@
     color: rgba(255, 255, 255, 0.8);
     font-size: 0.9rem;
     margin-bottom: 0.5rem;
+    gap: 1rem;
   }
 
   .theme-editor input,
@@ -598,9 +599,6 @@
   @media (max-width: 768px) {
     .editor-panel {
       width: 90%;
-    }
-    .whispers-list {
-      grid-template-columns: minmax(0, 1fr);
     }
 
     .tabs {

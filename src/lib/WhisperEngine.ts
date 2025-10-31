@@ -9,9 +9,10 @@ export interface Whisper {
 export class WhisperEngine {
   private whispers: Whisper[] = [];
   private currentWhisper: Whisper | null = null;
-  private previousWhisper: Whisper | null = null;
   private intervalId: number | null = null;
   private listeners: Set<(whisper: Whisper) => void> = new Set();
+  // 数据变更监听器
+  private dataChangeListeners: Set<() => void> = new Set();
 
   constructor(whispers: Whisper[]) {
     this.whispers = whispers;
@@ -19,19 +20,18 @@ export class WhisperEngine {
 
   // 根据权重随机选择一句，确保与上一句不同
   private selectRandomWhisper(): Whisper {
-    // 获取当前主题
-    const currentTheme = this.currentWhisper?.theme;
+    if (this.whispers.length === 0) {
+      return { text: "虚空中什么都没有...", theme: "void", weight: 1 };
+    }
 
-    // 过滤掉当前主题的句子
+    const currentTheme = this.currentWhisper?.theme;
     const availableWhispers = currentTheme
       ? this.whispers.filter((w) => w.theme !== currentTheme)
       : this.whispers;
 
-    // 如果过滤后没有句子了（极端情况），就用全部
     const candidates =
       availableWhispers.length > 0 ? availableWhispers : this.whispers;
 
-    // 根据权重随机选择
     const totalWeight = candidates.reduce((sum, w) => sum + w.weight, 0);
     let random = Math.random() * totalWeight;
 
@@ -45,28 +45,20 @@ export class WhisperEngine {
     return candidates[0];
   }
 
-  // 获取新的耳语
   next(): Whisper {
-    this.previousWhisper = this.currentWhisper;
     this.currentWhisper = this.selectRandomWhisper();
     this.notifyListeners();
     return this.currentWhisper;
   }
 
-  // 启动自动更新
   start(intervalMs: number = 10000): void {
     if (this.intervalId !== null) return;
-
-    // 立即显示第一句
     this.next();
-
-    // 设置定时器
     this.intervalId = window.setInterval(() => {
       this.next();
     }, intervalMs);
   }
 
-  // 停止自动更新
   stop(): void {
     if (this.intervalId !== null) {
       clearInterval(this.intervalId);
@@ -74,10 +66,15 @@ export class WhisperEngine {
     }
   }
 
-  // 订阅更新
   subscribe(callback: (whisper: Whisper) => void): () => void {
     this.listeners.add(callback);
     return () => this.listeners.delete(callback);
+  }
+
+  // 订阅数据变更
+  subscribeDataChange(callback: () => void): () => void {
+    this.dataChangeListeners.add(callback);
+    return () => this.dataChangeListeners.delete(callback);
   }
 
   private notifyListeners(): void {
@@ -86,32 +83,41 @@ export class WhisperEngine {
     }
   }
 
-  // 获取当前耳语
+  // 通知数据变更
+  private notifyDataChange(): void {
+    this.dataChangeListeners.forEach((cb) => cb());
+  }
+
   getCurrent(): Whisper | null {
     return this.currentWhisper;
   }
 
-  // 未来扩展：添加新句子
   addWhisper(whisper: Whisper): void {
-    this.whispers.push(whisper);
+    this.whispers.unshift(whisper);
+    this.notifyDataChange();
   }
 
-  // 未来扩展：更新句子
   updateWhisper(index: number, whisper: Whisper): void {
     if (index >= 0 && index < this.whispers.length) {
       this.whispers[index] = whisper;
+      this.notifyDataChange();
     }
   }
 
-  // 未来扩展：删除句子
   removeWhisper(index: number): void {
     if (index >= 0 && index < this.whispers.length) {
       this.whispers.splice(index, 1);
+      this.notifyDataChange();
     }
   }
 
-  // 获取所有句子
   getAll(): Whisper[] {
     return [...this.whispers];
+  }
+
+  // 批量替换所有句子
+  replaceAll(whispers: Whisper[]): void {
+    this.whispers = [...whispers];
+    this.notifyDataChange();
   }
 }
