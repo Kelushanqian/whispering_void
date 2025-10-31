@@ -70,6 +70,7 @@
 
   function updateAnimation() {
     dispatch("updateAnimation", animation);
+    close();
   }
 
   function close() {
@@ -94,27 +95,24 @@
     URL.revokeObjectURL(url);
   }
 
-  function importData(event: Event) {
-    const input = event.target as HTMLInputElement;
-    const file = input.files?.[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        try {
-          const data = JSON.parse(e.target?.result as string);
-          dispatch("import", data);
-        } catch (err) {
-          alert("导入失败：文件格式错误");
-        }
-      };
-      reader.readAsText(file);
+  // 键盘事件处理
+  function handleOverlayKeydown(e: KeyboardEvent) {
+    if (e.key === 'Escape') {
+      close();
+    }
+  }
+
+  function handleThemeKeydown(e: KeyboardEvent, themeName: string) {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      selectThemeToEdit(themeName);
     }
   }
 </script>
 
 {#if isOpen}
-  <div class="editor-overlay" on:click={close}>
-    <div class="editor-panel" on:click|stopPropagation>
+  <div class="editor-overlay" on:click={close} on:keydown={handleOverlayKeydown} role="button" tabindex="0" aria-label="关闭编辑器">
+    <div class="editor-panel" on:click|stopPropagation tabindex="0" aria-modal="true" role="dialog" aria-labelledby="editor-title">
       <div class="editor-header">
         <h2>虚空编辑器</h2>
         <button class="close-btn" on:click={close}>✕</button>
@@ -147,15 +145,6 @@
             <div class="actions">
               <button class="add-btn" on:click={addWhisper}>添加新句</button>
               <button class="export-btn" on:click={exportData}>导出配置</button>
-              <label class="import-btn">
-                导入配置
-                <input
-                  type="file"
-                  accept=".json"
-                  on:change={importData}
-                  style="display: none;"
-                />
-              </label>
             </div>
 
             <div class="whispers-list">
@@ -204,6 +193,9 @@
                 <div
                   class="theme-item"
                   on:click={() => selectThemeToEdit(name)}
+                  on:keydown={(e) => handleThemeKeydown(e, name)}
+                  tabindex="0"
+                  role="button"
                 >
                   <div
                     class="theme-preview"
@@ -408,8 +400,7 @@
     margin-bottom: 1rem;
   }
 
-  .actions button,
-  .actions label {
+  .actions button {
     background: rgba(255, 255, 255, 0.1);
     border: 1px solid rgba(255, 255, 255, 0.1);
     color: rgba(255, 255, 255, 0.9);
@@ -420,8 +411,7 @@
     transition: all 0.2s;
   }
 
-  .actions button:hover,
-  .actions label:hover {
+  .actions button:hover {
     background: rgba(255, 255, 255, 0.15);
     border-color: rgba(255, 255, 255, 0.3);
   }

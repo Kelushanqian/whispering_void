@@ -98,28 +98,6 @@
     engine.start(animationConfig.interval);
   }
 
-  function handleImport(event: CustomEvent<any>) {
-    const data = event.detail;
-
-    if (data.whispers) {
-      engine.replaceAll(data.whispers);
-    }
-
-    if (data.themes) {
-      Object.entries(data.themes).forEach(([name, style]) => {
-        themeManager.updateTheme(name, style as ThemeStyle);
-      });
-      themesList = themeManager.getAllThemes();
-    }
-
-    if (data.animation) {
-      animationConfig = data.animation;
-      themeManager.updateAnimation(data.animation);
-      engine.stop();
-      engine.start(animationConfig.interval);
-    }
-  }
-
   function toggleEditor() {
     isEditorOpen = !isEditorOpen;
   }
@@ -162,7 +140,6 @@
   on:deleteWhisper={handleDeleteWhisper}
   on:updateTheme={handleUpdateTheme}
   on:updateAnimation={handleUpdateAnimation}
-  on:import={handleImport}
 />
 
 <style>

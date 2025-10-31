@@ -11,14 +11,12 @@ export class WhisperEngine {
   private currentWhisper: Whisper | null = null;
   private intervalId: number | null = null;
   private listeners: Set<(whisper: Whisper) => void> = new Set();
-  // 数据变更监听器
   private dataChangeListeners: Set<() => void> = new Set();
 
   constructor(whispers: Whisper[]) {
     this.whispers = whispers;
   }
 
-  // 根据权重随机选择一句，确保与上一句不同
   private selectRandomWhisper(): Whisper {
     if (this.whispers.length === 0) {
       return { text: "虚空中什么都没有...", theme: "void", weight: 1 };
@@ -53,7 +51,12 @@ export class WhisperEngine {
 
   start(intervalMs: number = 10000): void {
     if (this.intervalId !== null) return;
-    this.next();
+    this.currentWhisper = {
+      text: "程序已启动，世界暂时安静。",
+      theme: "beginning",
+      weight: 0,
+    };
+    this.notifyListeners();
     this.intervalId = window.setInterval(() => {
       this.next();
     }, intervalMs);
@@ -113,11 +116,5 @@ export class WhisperEngine {
 
   getAll(): Whisper[] {
     return [...this.whispers];
-  }
-
-  // 批量替换所有句子
-  replaceAll(whispers: Whisper[]): void {
-    this.whispers = [...whispers];
-    this.notifyDataChange();
   }
 }

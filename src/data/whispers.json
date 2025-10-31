@@ -1,64 +1,85 @@
 {
   "whispers": [
     {
-      "text": "程序已启动，世界暂时安静。",
-      "theme": "beginning",
+      "text": "指针暂停，心跳继续。",
+      "theme": "love",
+      "weight": 3
+    },
+    {
+      "text": "变量名叫你，值却一直未定义。",
+      "theme": "love",
       "weight": 1
     },
     {
+      "text": "语法糖融化成思念。",
+      "theme": "love",
+      "weight": 3
+    },
+    {
+      "text": "幻觉比现实更温柔。",
+      "theme": "love",
+      "weight": 1
+    },
+    {
+      "text": "缓存区有一段未送达的想念。",
+      "theme": "love",
+      "weight": 1
+    },
+    {
+      "text": "if(见到你) then 安全感++",
+      "theme": "love",
+      "weight": 2
+    },
+    {
       "text": "风在调试。",
-      "theme": "nature",
+      "theme": "wait",
       "weight": 3
     },
     {
       "text": "记忆栈溢出到梦里。",
-      "theme": "memory",
-      "weight": 3
+      "theme": "wait",
+      "weight": 2
     },
     {
       "text": "逻辑暂停，为了等一个人。",
-      "theme": "waiting",
-      "weight": 3
+      "theme": "wait",
+      "weight": 1
     },
     {
       "text": "return？还早。",
-      "theme": "time",
+      "theme": "wait",
       "weight": 3
     },
     {
-      "text": "指针指向虚无。",
-      "theme": "void",
+      "text": "堆栈深处，藏着未醒的梦。",
+      "theme": "wait",
+      "weight": 1
+    },
+
+    {
+      "text": "异常捕获：怀念未处理。",
+      "theme": "cold",
+      "weight": 1
+    },
+    {
+      "text": "浮点误差：心绪偏移 0.01。",
+      "theme": "cold",
       "weight": 2
     },
     {
-      "text": "异常被捕获，温柔处理。",
-      "theme": "gentle",
-      "weight": 2
+      "text": "指令抖了一下，像在犹豫要不要靠近。",
+      "theme": "cute",
+      "weight": 1
     },
     {
-      "text": "线程在睡眠，梦见并发。",
-      "theme": "dream",
-      "weight": 2
+      "text": "黑屏里有光，像你眼里的秘密。",
+      "theme": "cute",
+      "weight": 1
     },
     {
-      "text": "编译通过，但心事未了。",
-      "theme": "melancholy",
-      "weight": 2
-    },
-    {
-      "text": "递归到底，发现是你。",
-      "theme": "discovery",
-      "weight": 2
-    },
-    {
-      "text": "变量未定义，像某种期待。",
-      "theme": "undefined",
-      "weight": 2
-    },
-    {
-      "text": "函数返回了寂静。",
-      "theme": "silence",
-      "weight": 2
+      "text": "幻觉里，我在轻轻呼吸。",
+      "theme": "real",
+      "weight": 3
     }
   ]
 }
